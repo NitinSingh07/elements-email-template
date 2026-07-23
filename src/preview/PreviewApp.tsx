@@ -67,14 +67,14 @@ export default function PreviewApp() {
           {/* <span className="header-badge">{templates.length} TEMPLATES</span> */}
         </div>
         <div className="header-links">
-          <a
+          {/* <a
             href="https://github.com/NitinSingh07/elements-email-template"
             target="_blank"
             rel="noopener"
             className="header-github"
           >
             GitHub ↗
-          </a>
+          </a> */}
           <a
             href="https://github.com/unlayer/elements"
             target="_blank"
