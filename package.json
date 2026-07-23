@@ -1,0 +1,26 @@
+{
+  "name": "elements-enterprise-kit",
+  "version": "1.0.0",
+  "description": "A collection of premium, production-ready email & document templates built with Unlayer Elements",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "render": "tsx src/render.ts",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@unlayer/react-elements": "^0.1.20",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
+  },
+  "devDependencies": {
+    "@types/react": "^19.1.0",
+    "@types/react-dom": "^19.1.0",
+    "@vitejs/plugin-react": "^4.5.2",
+    "tsx": "^4.19.0",
+    "typescript": "^5.8.3",
+    "vite": "^6.3.5"
+  }
+}
