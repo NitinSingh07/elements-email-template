@@ -497,7 +497,7 @@ export default function EventInvitation(): ReactElement {
             fontFamily={sansFont}
           />
           <Paragraph
-            html="📍 <b>Location:</b> Virtual (Zoom link sent upon RSVP)"
+            html="<b>Location:</b> Virtual (Zoom link sent upon RSVP)"
             fontSize="13px"
             color="#4b5563"
             textAlign="left"
@@ -505,7 +505,7 @@ export default function EventInvitation(): ReactElement {
             fontFamily={sansFont}
           />
           <Paragraph
-            html="🕐 <b>Duration:</b> 2.5 hours"
+            html="<b>Duration:</b> 2.5 hours"
             fontSize="13px"
             color="#4b5563"
             textAlign="left"
@@ -513,7 +513,7 @@ export default function EventInvitation(): ReactElement {
             fontFamily={sansFont}
           />
           <Paragraph
-            html="🎟️ <b>Price:</b> Free (limited to 500 attendees)"
+            html="<b>Price:</b> Free (limited to 500 attendees)"
             fontSize="13px"
             color="#4b5563"
             textAlign="left"

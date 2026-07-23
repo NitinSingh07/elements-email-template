@@ -98,7 +98,7 @@ export default function AccountActivityDigest(): ReactElement {
       >
         <Column>
           <Heading
-            text="Good morning, Nitin 👋"
+            text="Good morning, Nitin"
             headingType="h1"
             fontSize="22px"
             fontWeight={700}
@@ -163,7 +163,7 @@ export default function AccountActivityDigest(): ReactElement {
             fontFamily={sansFont}
           />
           <Paragraph
-            html="<b style='color:#16a34a'>↑ 12%</b> vs last week"
+            html="<b style='color:#16a34a'>+12%</b> vs last week"
             fontSize="10px"
             color="#94a3b8"
             textAlign="center"
@@ -271,7 +271,7 @@ export default function AccountActivityDigest(): ReactElement {
       >
         <Column backgroundColor="#fef2f2" padding="16px" borderRadius="8px">
           <Paragraph
-            html="🔴 <b>API key expiring</b> — Production key <code>sk_live_...8x4f</code> expires in 5 days. <a href='https://example.com/keys'>Rotate now →</a>"
+            html="<span style='background:#dc2626;color:#ffffff;font-size:10px;font-weight:700;padding:2px 6px;border-radius:4px;margin-right:8px;'>CRITICAL</span> <b>API key expiring</b> — Production key <code>sk_live_...8x4f</code> expires in 5 days. <a href='https://example.com/keys'>Rotate now →</a>"
             fontSize="13px"
             color="#0f172a"
             textAlign="left"
@@ -288,7 +288,7 @@ export default function AccountActivityDigest(): ReactElement {
       >
         <Column backgroundColor="#fffbeb" padding="16px" borderRadius="8px">
           <Paragraph
-            html="🟡 <b>Usage threshold</b> — You've used 82% of your monthly API quota. Consider upgrading or optimizing. <a href='https://example.com/usage'>View details →</a>"
+            html="<span style='background:#d97706;color:#ffffff;font-size:10px;font-weight:700;padding:2px 6px;border-radius:4px;margin-right:8px;'>WARNING</span> <b>Usage threshold</b> — You've used 82% of your monthly API quota. Consider upgrading or optimizing. <a href='https://example.com/usage'>View details →</a>"
             fontSize="13px"
             color="#0f172a"
             textAlign="left"
@@ -305,7 +305,7 @@ export default function AccountActivityDigest(): ReactElement {
       >
         <Column backgroundColor="#eff6ff" padding="16px" borderRadius="8px">
           <Paragraph
-            html="🔵 <b>Pending invite</b> — 2 team invitations are awaiting acceptance (sent 4 days ago). <a href='https://example.com/team'>Resend invites →</a>"
+            html="<span style='background:#2563eb;color:#ffffff;font-size:10px;font-weight:700;padding:2px 6px;border-radius:4px;margin-right:8px;'>NOTICE</span> <b>Pending invite</b> — 2 team invitations are awaiting acceptance (sent 4 days ago). <a href='https://example.com/team'>Resend invites →</a>"
             fontSize="13px"
             color="#0f172a"
             textAlign="left"

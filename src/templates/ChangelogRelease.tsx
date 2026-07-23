@@ -126,7 +126,7 @@ export default function ChangelogRelease(): ReactElement {
       >
         <Column backgroundColor="#1a1a2e" padding="24px" borderRadius="12px">
           <Paragraph
-            html="✨ NEW"
+            html="FEATURE"
             fontSize="11px"
             fontWeight={700}
             color="#34d399"
@@ -163,7 +163,7 @@ export default function ChangelogRelease(): ReactElement {
       >
         <Column backgroundColor="#1a1a2e" padding="20px" borderRadius="12px">
           <Paragraph
-            html="🔄 NEW"
+            html="COLLABORATION"
             fontSize="11px"
             fontWeight={700}
             color="#60a5fa"
@@ -192,7 +192,7 @@ export default function ChangelogRelease(): ReactElement {
         </Column>
         <Column backgroundColor="#1a1a2e" padding="20px" borderRadius="12px">
           <Paragraph
-            html="⚡ IMPROVED"
+            html="PERFORMANCE"
             fontSize="11px"
             fontWeight={700}
             color="#fbbf24"
@@ -313,7 +313,7 @@ export default function ChangelogRelease(): ReactElement {
       >
         <Column backgroundColor="#1c1917" padding="20px" borderRadius="8px">
           <Paragraph
-            html="⚠️ MIGRATION NOTE"
+            html="MIGRATION NOTE"
             fontSize="11px"
             fontWeight={700}
             color="#fbbf24"
