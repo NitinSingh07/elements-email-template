@@ -25,7 +25,14 @@ import {
  *   const html = renderToHtml(<DeveloperPortfolio />, { title: "Nitin Singh — Full Stack Developer" });
  */
 
-const sansFont = {
+export interface TemplateProps {
+  accentColor?: string;
+  brandName?: string;
+  buttonText?: string;
+  fontFamily?: { label: string; value: string } | string;
+}
+
+const defaultSansFont = {
   label: "Inter",
   value: "'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif",
 };
@@ -35,7 +42,15 @@ const monoFont = {
   value: "'SF Mono', 'Fira Code', 'Roboto Mono', monospace",
 };
 
-export default function DeveloperPortfolio(): ReactElement {
+export default function DeveloperPortfolio({
+  accentColor = "#a78bfa",
+  brandName = "Nitin Singh",
+  buttonText = "View Resume",
+  fontFamily = defaultSansFont,
+}: TemplateProps = {}): ReactElement {
+  const sansFont = typeof fontFamily === "string" ? { label: "Custom", value: fontFamily } : fontFamily;
+  const initials = brandName.split(" ").map(n => n[0]).join("").substring(0, 3).toUpperCase() || "DEV";
+  const cleanHex = accentColor.replace("#", "");
   return (
     <Page
       backgroundColor="#0a0a0f"
@@ -52,7 +67,7 @@ export default function DeveloperPortfolio(): ReactElement {
       >
         <Column>
           <Paragraph
-            html="<b style='color:#a78bfa'>NS</b><span style='color:#64748b'>.dev</span>"
+            html={`<b style='color:${accentColor}'>${initials}</b><span style='color:#64748b'>.dev</span>`}
             fontSize="18px"
             fontWeight={700}
             color="#ffffff"
@@ -85,11 +100,11 @@ export default function DeveloperPortfolio(): ReactElement {
         <Column>
           <Image
             src={{
-              url: "https://placehold.co/120x120/7c3aed/ffffff?text=NS",
+              url: `https://placehold.co/120x120/${cleanHex}/ffffff?text=${initials}`,
               width: 120,
               height: 120,
             }}
-            altText="Nitin Singh"
+            altText={brandName}
             textAlign="center"
           />
         </Column>
@@ -102,7 +117,7 @@ export default function DeveloperPortfolio(): ReactElement {
       >
         <Column>
           <Heading
-            text="Nitin Singh"
+            text={brandName}
             headingType="h1"
             fontSize="42px"
             fontWeight={700}
@@ -138,11 +153,11 @@ export default function DeveloperPortfolio(): ReactElement {
       >
         <Column>
           <Button
-            text="View Resume"
+            text={buttonText}
             href="https://example.com/resume"
-            backgroundColor="#7c3aed"
+            backgroundColor={accentColor}
             color="#ffffff"
-            hoverBackgroundColor="#6d28d9"
+            hoverBackgroundColor={`${accentColor}cc`}
             padding="12px 24px"
             borderRadius="8px"
             fontSize="13px"
@@ -182,7 +197,7 @@ export default function DeveloperPortfolio(): ReactElement {
             headingType="h2"
             fontSize="28px"
             fontWeight={700}
-            color="#a78bfa"
+            color={accentColor}
             textAlign="center"
             lineHeight="1.2"
             fontFamily={sansFont}

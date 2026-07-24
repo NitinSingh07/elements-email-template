@@ -23,7 +23,14 @@ import type { TableValues } from "@unlayer/react-elements";
  *   const html = renderToHtml(<SaasTrialExpiring />, { title: "Your trial ends in 3 days" });
  */
 
-const sansFont = {
+export interface TemplateProps {
+  accentColor?: string;
+  brandName?: string;
+  buttonText?: string;
+  fontFamily?: { label: string; value: string } | string;
+}
+
+const defaultSansFont = {
   label: "Inter",
   value: "'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif",
 };
@@ -89,7 +96,13 @@ const comparisonTable: Partial<TableValues> = {
   },
 };
 
-export default function SaasTrialExpiring(): ReactElement {
+export default function SaasTrialExpiring({
+  accentColor = "#7c3aed",
+  brandName = "Acme",
+  buttonText = "Upgrade to Pro — $19/mo",
+  fontFamily = defaultSansFont,
+}: TemplateProps = {}): ReactElement {
+  const sansFont = typeof fontFamily === "string" ? { label: "Custom", value: fontFamily } : fontFamily;
   return (
     <Email
       backgroundColor="#f0f0f3"
@@ -107,7 +120,7 @@ export default function SaasTrialExpiring(): ReactElement {
       >
         <Column>
           <Paragraph
-            html="ACME"
+            html={brandName}
             fontSize="16px"
             fontWeight={700}
             color="#ffffff"
@@ -127,7 +140,7 @@ export default function SaasTrialExpiring(): ReactElement {
         <Column>
           <Divider
             borderTopWidth="3px"
-            borderTopColor="#7c3aed"
+            borderTopColor={accentColor}
             borderTopStyle="solid"
           />
         </Column>
@@ -187,11 +200,11 @@ export default function SaasTrialExpiring(): ReactElement {
             fontFamily={sansFont}
           />
           <Button
-            text="Upgrade to Pro — $19/mo"
+            text={buttonText}
             href="https://example.com/upgrade"
-            backgroundColor="#7c3aed"
+            backgroundColor={accentColor}
             color="#ffffff"
-            hoverBackgroundColor="#6d28d9"
+            hoverBackgroundColor={`${accentColor}cc`}
             padding="14px 32px"
             borderRadius="8px"
             fontSize="14px"
@@ -242,7 +255,7 @@ export default function SaasTrialExpiring(): ReactElement {
             headingType="h2"
             fontSize="32px"
             fontWeight={700}
-            color="#7c3aed"
+            color={accentColor}
             textAlign="center"
             lineHeight="1.2"
             fontFamily={sansFont}
@@ -262,7 +275,7 @@ export default function SaasTrialExpiring(): ReactElement {
             headingType="h2"
             fontSize="32px"
             fontWeight={700}
-            color="#7c3aed"
+            color={accentColor}
             textAlign="center"
             lineHeight="1.2"
             fontFamily={sansFont}
@@ -282,7 +295,7 @@ export default function SaasTrialExpiring(): ReactElement {
             headingType="h2"
             fontSize="32px"
             fontWeight={700}
-            color="#7c3aed"
+            color={accentColor}
             textAlign="center"
             lineHeight="1.2"
             fontFamily={sansFont}
@@ -368,11 +381,11 @@ export default function SaasTrialExpiring(): ReactElement {
             fontFamily={sansFont}
           />
           <Button
-            text="Upgrade Now →"
+            text={buttonText.includes("Upgrade to Pro") ? "Upgrade Now →" : buttonText}
             href="https://example.com/upgrade"
-            backgroundColor="#7c3aed"
+            backgroundColor={accentColor}
             color="#ffffff"
-            hoverBackgroundColor="#6d28d9"
+            hoverBackgroundColor={`${accentColor}cc`}
             padding="14px 36px"
             borderRadius="8px"
             fontSize="15px"
@@ -398,7 +411,7 @@ export default function SaasTrialExpiring(): ReactElement {
       >
         <Column>
           <Paragraph
-            html="Acme Inc · San Francisco, CA"
+            html={`${brandName} Inc · San Francisco, CA`}
             fontSize="12px"
             color="#94a3b8"
             textAlign="center"

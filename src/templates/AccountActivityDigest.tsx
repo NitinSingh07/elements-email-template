@@ -22,12 +22,25 @@ import {
  *   const html = renderToHtml(<AccountActivityDigest />, { title: "Your Weekly Digest — Jul 14–20" });
  */
 
-const sansFont = {
+export interface TemplateProps {
+  accentColor?: string;
+  brandName?: string;
+  buttonText?: string;
+  fontFamily?: { label: string; value: string } | string;
+}
+
+const defaultSansFont = {
   label: "Inter",
   value: "'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif",
 };
 
-export default function AccountActivityDigest(): ReactElement {
+export default function AccountActivityDigest({
+  accentColor = "#0ea5e9",
+  brandName = "Acme",
+  buttonText = "View Full Dashboard",
+  fontFamily = defaultSansFont,
+}: TemplateProps = {}): ReactElement {
+  const sansFont = typeof fontFamily === "string" ? { label: "Custom", value: fontFamily } : fontFamily;
   return (
     <Email
       backgroundColor="#f1f5f9"
@@ -45,7 +58,7 @@ export default function AccountActivityDigest(): ReactElement {
       >
         <Column>
           <Paragraph
-            html="ACME"
+            html={brandName.toUpperCase()}
             fontSize="16px"
             fontWeight={700}
             color="#0f172a"
@@ -78,13 +91,13 @@ export default function AccountActivityDigest(): ReactElement {
       {/* Accent */}
       <Row
         layout={ColumnLayouts.OneColumn}
-        backgroundColor="#0ea5e9"
+        backgroundColor={accentColor}
         padding="0px"
       >
         <Column>
           <Divider
             borderTopWidth="3px"
-            borderTopColor="#0ea5e9"
+            borderTopColor={accentColor}
             borderTopStyle="solid"
           />
         </Column>
@@ -447,11 +460,11 @@ export default function AccountActivityDigest(): ReactElement {
       >
         <Column>
           <Button
-            text="View Full Dashboard"
+            text={buttonText}
             href="https://example.com/dashboard"
-            backgroundColor="#0ea5e9"
+            backgroundColor={accentColor}
             color="#ffffff"
-            hoverBackgroundColor="#0284c7"
+            hoverBackgroundColor={`${accentColor}cc`}
             padding="14px 32px"
             borderRadius="8px"
             fontSize="14px"
@@ -490,7 +503,7 @@ export default function AccountActivityDigest(): ReactElement {
       >
         <Column>
           <Paragraph
-            html="Acme Inc · San Francisco, CA"
+            html={`${brandName} Inc · San Francisco, CA`}
             fontSize="12px"
             color="#94a3b8"
             textAlign="center"

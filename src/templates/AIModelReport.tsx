@@ -30,7 +30,14 @@ import {
  *   const html = renderToHtml(<AIModelReport />, { title: "Model Training Report — GPT-Classifier v2.1" });
  */
 
-const sansFont = {
+export interface TemplateProps {
+  accentColor?: string;
+  brandName?: string;
+  buttonText?: string;
+  fontFamily?: { label: string; value: string } | string;
+}
+
+const defaultSansFont = {
   label: "Inter",
   value: "'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif",
 };
@@ -230,7 +237,13 @@ const confusionMatrix: Partial<TableValues> = {
   },
 };
 
-export default function AIModelReport(): ReactElement {
+export default function AIModelReport({
+  accentColor = "#16a34a",
+  brandName = "Acme",
+  buttonText = "View Full Report",
+  fontFamily = defaultSansFont,
+}: TemplateProps = {}): ReactElement {
+  const sansFont = typeof fontFamily === "string" ? { label: "Custom", value: fontFamily } : fontFamily;
   return (
     <Document
       backgroundColor="#ffffff"
@@ -247,7 +260,7 @@ export default function AIModelReport(): ReactElement {
       >
         <Column>
           <Paragraph
-            html="ACME AI LABS"
+            html={`${brandName.toUpperCase()} AI LABS`}
             fontSize="14px"
             fontWeight={700}
             color="#0f172a"
@@ -266,7 +279,7 @@ export default function AIModelReport(): ReactElement {
         </Column>
         <Column>
           <Html
-            html="<div style='text-align:right'><span style='background-color:#dcfce7;color:#16a34a;font-size:11px;font-weight:700;padding:4px 12px;border-radius:12px;'>PASSED ✓</span></div>"
+            html={`<div style='text-align:right'><span style='background-color:#dcfce7;color:${accentColor};font-size:11px;font-weight:700;padding:4px 12px;border-radius:12px;'>PASSED ✓</span></div>`}
           />
           <Paragraph
             html="Report #MLR-2026-0147"
@@ -281,13 +294,13 @@ export default function AIModelReport(): ReactElement {
 
       <Row
         layout={ColumnLayouts.OneColumn}
-        backgroundColor="#16a34a"
+        backgroundColor={accentColor}
         padding="0px"
       >
         <Column>
           <Divider
             borderTopWidth="3px"
-            borderTopColor="#16a34a"
+            borderTopColor={accentColor}
             borderTopStyle="solid"
           />
         </Column>
@@ -875,7 +888,7 @@ export default function AIModelReport(): ReactElement {
       >
         <Column>
           <Paragraph
-            html="ACME AI Labs · Confidential · Generated with <a href='https://github.com/unlayer/elements'>Unlayer Elements</a>"
+            html={`${brandName} AI Labs · Confidential · Generated with <a href='https://github.com/unlayer/elements'>Unlayer Elements</a>`}
             fontSize="10px"
             color="#94a3b8"
             textAlign="center"

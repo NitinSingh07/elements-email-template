@@ -18,6 +18,7 @@ import ProposalDocument from "./templates/ProposalDocument";
 import AccountActivityDigest from "./templates/AccountActivityDigest";
 import DeveloperPortfolio from "./templates/DeveloperPortfolio";
 import AIModelReport from "./templates/AIModelReport";
+import SaaSInvoiceReceipt from "./templates/SaaSInvoiceReceipt";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -25,6 +26,7 @@ const outputDir = join(__dirname, "..", "output");
 
 const templates = [
   { id: "saas-trial-expiring", name: "SaaS Trial Expiring", component: SaasTrialExpiring },
+  { id: "saas-invoice-receipt", name: "SaaS Invoice & Receipt", component: SaaSInvoiceReceipt },
   { id: "event-invitation", name: "Event / Webinar Invitation", component: EventInvitation },
   { id: "changelog-release", name: "Changelog / Release Notes", component: ChangelogRelease },
   { id: "developer-portfolio", name: "Developer Portfolio", component: DeveloperPortfolio },

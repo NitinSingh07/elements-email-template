@@ -23,12 +23,25 @@ import {
  *   const html = renderToHtml(<EventInvitation />, { title: "You're Invited: Design Systems Summit 2026" });
  */
 
-const sansFont = {
+export interface TemplateProps {
+  accentColor?: string;
+  brandName?: string;
+  buttonText?: string;
+  fontFamily?: { label: string; value: string } | string;
+}
+
+const defaultSansFont = {
   label: "Inter",
   value: "'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif",
 };
 
-export default function EventInvitation(): ReactElement {
+export default function EventInvitation({
+  accentColor = "#7c3aed",
+  brandName = "Acme",
+  buttonText = "Reserve Your Spot",
+  fontFamily = defaultSansFont,
+}: TemplateProps = {}): ReactElement {
+  const sansFont = typeof fontFamily === "string" ? { label: "Custom", value: fontFamily } : fontFamily;
   return (
     <Email
       backgroundColor="#f5f3ff"
@@ -46,10 +59,10 @@ export default function EventInvitation(): ReactElement {
       >
         <Column>
           <Paragraph
-            html="ACME EVENTS"
+            html={`${brandName.toUpperCase()} EVENTS`}
             fontSize="13px"
             fontWeight={700}
-            color="#6d28d9"
+            color={accentColor}
             textAlign="left"
             lineHeight="1.3"
             fontFamily={sansFont}
@@ -59,7 +72,7 @@ export default function EventInvitation(): ReactElement {
           <Paragraph
             html="<a href='https://example.com/events'>View all events →</a>"
             fontSize="12px"
-            color="#7c3aed"
+            color={accentColor}
             textAlign="right"
             lineHeight="1.3"
             fontFamily={sansFont}
@@ -70,13 +83,13 @@ export default function EventInvitation(): ReactElement {
       {/* Accent bar */}
       <Row
         layout={ColumnLayouts.OneColumn}
-        backgroundColor="#7c3aed"
+        backgroundColor={accentColor}
         padding="0px"
       >
         <Column>
           <Divider
             borderTopWidth="3px"
-            borderTopColor="#7c3aed"
+            borderTopColor={accentColor}
             borderTopStyle="solid"
           />
         </Column>
@@ -88,13 +101,13 @@ export default function EventInvitation(): ReactElement {
         backgroundColor="#ffffff"
         padding="40px 40px 12px 40px"
       >
-        <Column backgroundColor="#f5f3ff" padding="20px" borderRadius="12px">
+        <Column backgroundColor={`${accentColor}15`} padding="20px" borderRadius="12px">
           <Heading
             text="AUG"
             headingType="h3"
             fontSize="12px"
             fontWeight={700}
-            color="#7c3aed"
+            color={accentColor}
             textAlign="center"
             lineHeight="1.4"
             fontFamily={sansFont}
@@ -156,11 +169,11 @@ export default function EventInvitation(): ReactElement {
       >
         <Column>
           <Button
-            text="Reserve Your Spot"
+            text={buttonText}
             href="https://example.com/rsvp"
-            backgroundColor="#7c3aed"
+            backgroundColor={accentColor}
             color="#ffffff"
-            hoverBackgroundColor="#6d28d9"
+            hoverBackgroundColor={`${accentColor}cc`}
             padding="14px 32px"
             borderRadius="8px"
             fontSize="14px"
@@ -524,8 +537,8 @@ export default function EventInvitation(): ReactElement {
             text="Add to Calendar"
             href="https://example.com/calendar"
             backgroundColor="#ffffff"
-            color="#7c3aed"
-            hoverBackgroundColor="#f5f3ff"
+            color={accentColor}
+            hoverBackgroundColor={`${accentColor}15`}
             padding="10px 24px"
             borderRadius="6px"
             fontSize="13px"
@@ -535,16 +548,16 @@ export default function EventInvitation(): ReactElement {
             border={{
               borderTopWidth: "1px",
               borderTopStyle: "solid",
-              borderTopColor: "#7c3aed",
+              borderTopColor: accentColor,
               borderRightWidth: "1px",
               borderRightStyle: "solid",
-              borderRightColor: "#7c3aed",
+              borderRightColor: accentColor,
               borderBottomWidth: "1px",
               borderBottomStyle: "solid",
-              borderBottomColor: "#7c3aed",
+              borderBottomColor: accentColor,
               borderLeftWidth: "1px",
               borderLeftStyle: "solid",
-              borderLeftColor: "#7c3aed",
+              borderLeftColor: accentColor,
             }}
           />
         </Column>
@@ -578,7 +591,7 @@ export default function EventInvitation(): ReactElement {
       >
         <Column>
           <Paragraph
-            html="Acme Events · San Francisco, CA"
+            html={`${brandName} Events · San Francisco, CA`}
             fontSize="12px"
             color="#9ca3af"
             textAlign="center"

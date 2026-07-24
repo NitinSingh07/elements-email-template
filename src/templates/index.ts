@@ -7,6 +7,7 @@ import ProposalDocument from "./ProposalDocument";
 import AccountActivityDigest from "./AccountActivityDigest";
 import DeveloperPortfolio from "./DeveloperPortfolio";
 import AIModelReport from "./AIModelReport";
+import SaaSInvoiceReceipt from "./SaaSInvoiceReceipt";
 
 // Source code via Vite ?raw imports (for the preview app)
 import saasTrialSource from "./SaasTrialExpiring.tsx?raw";
@@ -16,6 +17,7 @@ import proposalSource from "./ProposalDocument.tsx?raw";
 import activityDigestSource from "./AccountActivityDigest.tsx?raw";
 import portfolioSource from "./DeveloperPortfolio.tsx?raw";
 import aiReportSource from "./AIModelReport.tsx?raw";
+import saasInvoiceSource from "./SaaSInvoiceReceipt.tsx?raw";
 
 export interface TemplateEntry {
   id: string;
@@ -25,7 +27,7 @@ export interface TemplateEntry {
   inspiration: string;
   colorAccent: string;
   mode: "email" | "web" | "document";
-  component: () => ReactElement;
+  component: (props?: any) => ReactElement;
   sourceCode: string;
   elementsUsed: string[];
 }
@@ -43,6 +45,19 @@ export const templates: TemplateEntry[] = [
     component: SaasTrialExpiring,
     sourceCode: saasTrialSource,
     elementsUsed: ["Email", "Row", "Column", "Heading", "Paragraph", "Button", "Divider", "Table"],
+  },
+  {
+    id: "saas-invoice-receipt",
+    name: "SaaS Invoice & Receipt",
+    description:
+      "Sleek billing invoice and payment receipt with itemized table, status badge, and custom branding",
+    category: "saas",
+    inspiration: "Stripe",
+    colorAccent: "#7c3aed",
+    mode: "email",
+    component: SaaSInvoiceReceipt,
+    sourceCode: saasInvoiceSource,
+    elementsUsed: ["Email", "Row", "Column", "Heading", "Paragraph", "Button", "Divider", "Table", "Html"],
   },
   {
     id: "event-invitation",
@@ -136,4 +151,5 @@ export {
   AccountActivityDigest,
   DeveloperPortfolio,
   AIModelReport,
+  SaaSInvoiceReceipt,
 };

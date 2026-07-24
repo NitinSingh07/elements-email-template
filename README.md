@@ -144,4 +144,4 @@ const designJson = renderToJson(<ProposalDocument />);
 
 ## 📄 License
 
-[MIT](LICENSE) © Nitin Singh
+[MIT](LICENSE) © Nitin Pratap Singh

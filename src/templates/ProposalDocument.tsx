@@ -27,7 +27,14 @@ import {
  *   // Use Unlayer's PDF API or any HTML-to-PDF library
  */
 
-const sansFont = {
+export interface TemplateProps {
+  accentColor?: string;
+  brandName?: string;
+  buttonText?: string;
+  fontFamily?: { label: string; value: string } | string;
+}
+
+const defaultSansFont = {
   label: "Inter",
   value: "'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif",
 };
@@ -152,7 +159,14 @@ const timeline: Partial<TableValues> = {
   },
 };
 
-export default function ProposalDocument(): ReactElement {
+export default function ProposalDocument({
+  accentColor = "#6366f1",
+  brandName = "Acme",
+  buttonText = "Accept Proposal",
+  fontFamily = defaultSansFont,
+}: TemplateProps = {}): ReactElement {
+  const sansFont = typeof fontFamily === "string" ? { label: "Custom", value: fontFamily } : fontFamily;
+  const domain = brandName.toLowerCase().replace(/\s+/g, "");
   return (
     <Document
       backgroundColor="#ffffff"
@@ -169,7 +183,7 @@ export default function ProposalDocument(): ReactElement {
       >
         <Column>
           <Paragraph
-            html="ACME STUDIO"
+            html={`${brandName.toUpperCase()} STUDIO`}
             fontSize="14px"
             fontWeight={700}
             color="#0f172a"
@@ -191,7 +205,7 @@ export default function ProposalDocument(): ReactElement {
             html="PROPOSAL"
             fontSize="12px"
             fontWeight={700}
-            color="#6366f1"
+            color={accentColor}
             textAlign="right"
             lineHeight="1.3"
             fontFamily={sansFont}
@@ -209,13 +223,13 @@ export default function ProposalDocument(): ReactElement {
 
       <Row
         layout={ColumnLayouts.OneColumn}
-        backgroundColor="#6366f1"
+        backgroundColor={accentColor}
         padding="0px"
       >
         <Column>
           <Divider
             borderTopWidth="3px"
-            borderTopColor="#6366f1"
+            borderTopColor={accentColor}
             borderTopStyle="solid"
           />
         </Column>
@@ -630,7 +644,7 @@ export default function ProposalDocument(): ReactElement {
       >
         <Column>
           <Paragraph
-            html="Acme Studio · 1 Infinite Loop, Cupertino, CA 95014 · proposals@acme.studio"
+            html={`${brandName} Studio · 1 Infinite Loop, Cupertino, CA 95014 · proposals@${domain}.studio`}
             fontSize="11px"
             color="#94a3b8"
             textAlign="center"

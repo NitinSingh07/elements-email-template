@@ -27,12 +27,25 @@ const monoFont = {
   value: "'SF Mono', 'Fira Code', 'Roboto Mono', monospace",
 };
 
-const sansFont = {
+export interface TemplateProps {
+  accentColor?: string;
+  brandName?: string;
+  buttonText?: string;
+  fontFamily?: { label: string; value: string } | string;
+}
+
+const defaultSansFont = {
   label: "Inter",
   value: "'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif",
 };
 
-export default function ChangelogRelease(): ReactElement {
+export default function ChangelogRelease({
+  accentColor = "#34d399",
+  brandName = "Acme",
+  buttonText = "Update Now →",
+  fontFamily = defaultSansFont,
+}: TemplateProps = {}): ReactElement {
+  const sansFont = typeof fontFamily === "string" ? { label: "Custom", value: fontFamily } : fontFamily;
   return (
     <Email
       backgroundColor="#0a0a0a"
@@ -50,7 +63,7 @@ export default function ChangelogRelease(): ReactElement {
       >
         <Column>
           <Paragraph
-            html="ACME"
+            html={brandName.toUpperCase()}
             fontSize="16px"
             fontWeight={700}
             color="#ffffff"
@@ -61,7 +74,7 @@ export default function ChangelogRelease(): ReactElement {
         </Column>
         <Column>
           <Html
-            html="<div style='text-align:right'><span style='background-color:#1e293b;color:#34d399;font-size:11px;font-weight:700;padding:4px 10px;border-radius:12px;font-family:monospace;'>v3.2.0</span></div>"
+            html={`<div style='text-align:right'><span style='background-color:#1e293b;color:${accentColor};font-size:11px;font-weight:700;padding:4px 10px;border-radius:12px;font-family:monospace;'>v3.2.0</span></div>`}
           />
         </Column>
       </Row>
@@ -75,7 +88,7 @@ export default function ChangelogRelease(): ReactElement {
         <Column>
           <Divider
             borderTopWidth="2px"
-            borderTopColor="#34d399"
+            borderTopColor={accentColor}
             borderTopStyle="solid"
           />
         </Column>
@@ -129,7 +142,7 @@ export default function ChangelogRelease(): ReactElement {
             html="FEATURE"
             fontSize="11px"
             fontWeight={700}
-            color="#34d399"
+            color={accentColor}
             textAlign="left"
             lineHeight="1.4"
             fontFamily={monoFont}
@@ -263,7 +276,7 @@ export default function ChangelogRelease(): ReactElement {
       >
         <Column>
           <Paragraph
-            html="<b style='color:#34d399'>Fixed</b> — Webhook payloads now include the correct <code>created_at</code> timestamp"
+            html={`<b style='color:${accentColor}'>Fixed</b> — Webhook payloads now include the correct <code>created_at</code> timestamp`}
             fontSize="13px"
             color="#9ca3af"
             textAlign="left"
@@ -271,7 +284,7 @@ export default function ChangelogRelease(): ReactElement {
             fontFamily={sansFont}
           />
           <Paragraph
-            html="<b style='color:#34d399'>Fixed</b> — Dashboard charts no longer flicker on Safari 18+"
+            html={`<b style='color:${accentColor}'>Fixed</b> — Dashboard charts no longer flicker on Safari 18+`}
             fontSize="13px"
             color="#9ca3af"
             textAlign="left"
@@ -356,11 +369,11 @@ export default function ChangelogRelease(): ReactElement {
         </Column>
         <Column>
           <Button
-            text="Update Now →"
+            text={buttonText}
             href="https://example.com/update"
-            backgroundColor="#34d399"
+            backgroundColor={accentColor}
             color="#0a0a0a"
-            hoverBackgroundColor="#10b981"
+            hoverBackgroundColor={`${accentColor}cc`}
             padding="12px 24px"
             borderRadius="8px"
             fontSize="13px"
